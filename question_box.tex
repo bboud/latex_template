@@ -1,0 +1,89 @@
+\usepackage[most,many,breakable]{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SELF MADE COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{myg}{RGB}{56, 140, 70}
+\definecolor{myb}{RGB}{45, 111, 177}
+\definecolor{myr}{RGB}{199, 68, 64}
+
+%================================
+% Solution BOX
+%================================
+
+\makeatletter
+\newtcbtheorem{question}{Question}{enhanced,
+	breakable,
+	colback=white,
+	colframe=myb!80!black,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+	fonttitle=\bfseries,
+	title={#2},
+	boxed title size=title,
+	boxed title style={%
+			sharp corners,
+			rounded corners=northwest,
+			colback=tcbcolframe,
+			boxrule=0pt,
+		},
+	underlay boxed title={%
+			\path[fill=tcbcolframe] (title.south west)--(title.south east)
+			to[out=0, in=180] ([xshift=5mm]title.east)--
+			(title.center-|frame.east)
+			[rounded corners=\kvtcb@arc] |-
+			(frame.north) -| cycle;
+		},
+	#1
+}{def}
+\makeatother
+%================================
+% Question BOX
+%================================
+\makeatletter
+\newtcbtheorem{qstion}{Question}{enhanced,
+	breakable,
+	colback=white,
+	colframe=mygr,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+	fonttitle=\bfseries,
+	title={#2},
+	boxed title size=title,
+	boxed title style={%
+			sharp corners,
+			rounded corners=northwest,
+			colback=tcbcolframe,
+			boxrule=0pt,
+		},
+	underlay boxed title={%
+			\path[fill=tcbcolframe] (title.south west)--(title.south east)
+			to[out=0, in=180] ([xshift=5mm]title.east)--
+			(title.center-|frame.east)
+			[rounded corners=\kvtcb@arc] |-
+			(frame.north) -| cycle;
+		},
+	#1
+}{def}
+\makeatother
+
+\newtcbtheorem[number within=chapter]{wconc}{Wrong Concept}{
+	breakable,
+	enhanced,
+	colback=white,
+	colframe=myr,
+	arc=0pt,
+	outer arc=0pt,
+	fonttitle=\bfseries\sffamily\large,
+	colbacktitle=myr,
+	attach boxed title to top left={},
+	boxed title style={
+			enhanced,
+			skin=enhancedfirst jigsaw,
+			arc=3pt,
+			bottom=0pt,
+			interior style={fill=myr}
+		},
+	#1
+}{def}
+
+\newcommand{\qs}[2]{\begin{question}{#1}{}#2\end{question}}
